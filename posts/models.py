@@ -13,6 +13,10 @@ select * from posts where title ILIKE '%p%" ==> Post.objects.filter(title_iconta
 """
 select 1 from posts where id = 123 ==> Post.object.get(id=123) 
 """
+"""
+INSERT INTO posts (title, content) VALUES ('title', 'content') ==> Post.objects.create(title='title', content='content')
+"""
+
 
 class Category(models.Model):
     name = models.CharField(max_length=256)
