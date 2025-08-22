@@ -2,6 +2,7 @@ from .models import Post
 from django.shortcuts import render, HttpResponse, redirect
 import random
 from posts.forms import PostForm
+from django.contrib.auth.decorators import login_required
 
 def home_page(request):
     return render(request, "base.html")
@@ -15,17 +16,19 @@ def first_view(request):
 def second_html_veiw(request):
     return render(request, "main.html")
 
-
+@login_required(login_url='/login')
 def post_list_view(request):
     posts = Post.objects.all()
     return render(request, "posts/post_list.html", context={"posts": posts})
     
     
-    
+@login_required(login_url='/login')
 def post_detail_view(request, post_id):
     post = Post.objects.get(id=post_id)
     return render(request, "posts/post_detail.html", context={"post": post})
 
+
+@login_required(login_url='/login')
 def post_create_view(request):
     if request.method == "GET":
         form = PostForm()
