@@ -1,7 +1,7 @@
 from django import forms    
 from posts.models import Post
 
-class PostForm(forms.ModelForm):
+class PostForm(forms.Form):
     title = forms.CharField(max_length=256)
     content = forms.CharField(max_length=512)
     image = forms.ImageField(required=False)
